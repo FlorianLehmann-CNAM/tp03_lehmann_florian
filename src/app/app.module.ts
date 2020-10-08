@@ -11,10 +11,13 @@ import { CommonModule } from '@angular/common';
 import { CustomValidatorModule } from './modules/customValidatorModule';
 import { MatchDirective } from './directives/Match.directive';
 import { FormatPhonePipe } from './pipes/formatPhone.pipe';
+import { HttpServiceService } from './services/http-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  imports:   [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule, CustomValidatorModule],
+  imports:   [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule, CustomValidatorModule, BrowserModule, HttpClientModule],
   declarations: [ AppComponent, HeaderComponent, FooterComponent, CompteFormComponent, RecapComponent, MatchDirective,  FormatPhonePipe],
-  bootstrap:    [ AppComponent ]
+  bootstrap:    [ AppComponent ],
+  providers: [HttpServiceService]
 })
 export class AppModule { }
