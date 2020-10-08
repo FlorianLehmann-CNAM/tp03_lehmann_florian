@@ -13,10 +13,12 @@ import { MatchDirective } from './directives/Match.directive';
 import { FormatPhonePipe } from './pipes/formatPhone.pipe';
 import { HttpServiceService } from './services/http-service.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { SearchBoxComponent } from './components/search-box/search-box.component';
 
 @NgModule({
   imports:   [BrowserModule, FormsModule, ReactiveFormsModule, CommonModule, CustomValidatorModule, BrowserModule, HttpClientModule],
-  declarations: [ AppComponent, HeaderComponent, FooterComponent, CompteFormComponent, RecapComponent, MatchDirective,  FormatPhonePipe],
+  declarations: [ AppComponent, HeaderComponent, FooterComponent, CompteFormComponent, RecapComponent, MatchDirective,  FormatPhonePipe, ProductListComponent, SearchBoxComponent],
   bootstrap:    [ AppComponent ],
   providers: [HttpServiceService]
 })
