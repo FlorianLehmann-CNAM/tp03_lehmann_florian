@@ -23,7 +23,7 @@ export class SearchBoxComponent implements OnInit {
 
   onKey(event : any) : void{
     this.dataToFilter.pipe(
-      map((products : Product[]) => products.filter((p) => p.title.includes(event.target.value)))
+      map((products : Product[]) => products.filter((p) => p.title.toLowerCase().includes(event.target.value)))
     ).subscribe((values) => this.onFilteredData.emit(values));
     
   }
