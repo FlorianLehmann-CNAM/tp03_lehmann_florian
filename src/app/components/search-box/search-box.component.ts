@@ -1,4 +1,6 @@
 import { Component, EventEmitter,  Input,  OnInit, Output } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/operators';
 import { Product } from '../../models/Product';
 
 @Component({
@@ -8,7 +10,7 @@ import { Product } from '../../models/Product';
 })
 export class SearchBoxComponent implements OnInit {
 
-  @Input() dataToFilter : Product[];
+  @Input() dataToFilter : Observable<Product[]>;
   @Output() onFilteredData : EventEmitter<Product[]>
 
   constructor() {
@@ -20,8 +22,10 @@ export class SearchBoxComponent implements OnInit {
   }
 
   onKey(event : any) : void{
-    let newData : Product[] = this.dataToFilter.filter((p) => p.title.includes(event.target.value));
-    this.onFilteredData.emit(newData);
+    this.dataToFilter.pipe(
+      map((products : Product[]) => products.filter((p) => p.title.includes(event.target.value)))
+    ).subscribe((values) => this.onFilteredData.emit(values));
+    
   }
 
 }

@@ -1,7 +1,7 @@
 
 
 
-<app-search-box [dataToFilter]="products" (onFilteredData)="onFilteredData($event)"></app-search-box>
+<app-search-box [dataToFilter]="productsObservable" (onFilteredData)="onFilteredData($event)"></app-search-box>
 <div *ngIf="displayProducts && displayProducts.length == 0">
   <p> Pas de produit correspondants à votre recherche. </p>
 </div>

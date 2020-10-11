@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 import { Product } from '../../models/Product';
 import { HttpServiceService } from '../../services/http-service.service';
 
@@ -9,21 +10,16 @@ import { HttpServiceService } from '../../services/http-service.service';
 })
 export class ProductListComponent implements OnInit {
 
-  products : Product[]
-  displayProducts : Product[]
+
+  productsObservable : Observable<Product[]>;
+
+  displayProducts : Product[];
 
   constructor(private httpService : HttpServiceService) { }
 
   ngOnInit() {
-    this.retrieveData();
-  }
-
-  retrieveData() : void{
-    this.httpService.getProductData().subscribe((data : Product[]) => {
-      console.log(data);
-      this.products = data;
-      this.displayProducts = data;
-    })
+    this.productsObservable = this.httpService.getProductData();
+    this.productsObservable.subscribe((value : Product[]) => this.displayProducts = value);
   }
 
   onFilteredData(event : Product[]) : void{
